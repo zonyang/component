@@ -1,0 +1,19 @@
+<html>
+<head>
+  <title>Evernote Export</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/600363 (zh-CN, DDL); Windows/6.1.1 (Win64);"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="561"/>
+
+<div>
+<span><div><div><b style="font-size: 16pt;"><font style="font-family: 新宋体;">drag：拖拽组件</font></b><br/></div><ul><li><div><span><font face="新宋体" style="font-size: 12pt;">onmousedown与onclick区别：onclick是获取锚点 可以是鼠标、tab键；onmousedown只能是鼠标</font></span></div></li><li><div><span style="font-size: 12pt;"><font face="新宋体">offset系列 </font></span></div></li></ul><ol><ol><li><div><font face="新宋体">offsetParent 最近的已经定位的祖先元素 无定位祖先则是body</font></div></li><li><div><font face="新宋体">offsetWidth = width+ padding +border</font></div></li><li><div><font face="新宋体">offsetHeight 同上</font></div></li><li><div><font face="新宋体">offsetTop 相对于最近的已经定位的祖先元素的top值差</font></div></li><li><div><font face="新宋体">offsetLeft 同上</font></div></li></ol></ol><ul><li><div><font face="新宋体" style="font-size: 12pt;">事件三要素</font></div></li><ol><li><div><font face="新宋体" style="font-size: 10pt;">事件源 e.target (标准) || window.event.srcElement (IE)</font></div></li><li><div><font face="新宋体">事件处理函数 function</font></div></li><li><div><font face="新宋体">事件 e = e (标准) || window.event 包含多种属性</font></div></li></ol><li><div><font><font face="新宋体"><span style="font-size: 12pt;">e.clientX：</span><span style="color: rgb(0, 0, 0); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(253, 252, 248);"><font style="font-size: 12pt;">返回当事件被触发时鼠标指针向对于浏览器页面（或客户区）的水平坐标。</font></span></font></font></div></li><li><div><span style="font-size: 12pt;"><font style="font-family: 新宋体;">null与undefined：定义一个变量未赋初始值时为undefined；获取一个不存在的元素为null；</font></span></div></li><li><div><span style="font-size: 12pt; font-family: 新宋体;">被拖拽组件的位置设置</span></div></li></ul><ol><ol><li><div><span style="font-family: 新宋体;"><font style="font-size: 10pt;">移动距离 = clientY终值 - clientY初值；</font></span><span style="font-family: 新宋体; font-size: 10pt;">实际top值 = 移动距离 + 初始top值（包含框有定位则相对于包含框 无则相对于body）； </span> <span style="font-family: 新宋体; font-size: 10pt;">任意位置可以拖拽的框必有初始值，用以下方法更好</span></div></li><li><div><span style="font-family: 新宋体; font-size: 10pt;">鼠标距离框顶部top = clientY初值 - 框offsetTop</span><br/></div></li></ol></ol><div><span style="font-family: 新宋体; font-size: 10pt;"><span>    </span><span>  </span> 实际top值 = clientY终值 - 鼠标距离框顶部top</span></div><div><span style="font-family: 新宋体;"><br/></span></div><div><b><font face="新宋体" style="font-size: 14pt;">magnifier：放大镜组件</font></b></div><ul><li><div><span style="font-size: 12pt;"><font face="新宋体">Ie bug当给元素设置透明时，需要随便设置一个背景颜色才能绑定事件</font></span></div></li><li><div><span style="font-size: 12pt;"><font face="新宋体">cursor: pointer 鼠标手型</font></span></div></li></ul><div><b><br/></b></div><div><br/></div></div></span>
+</div></body></html> 
