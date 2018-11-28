@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>drag</title>
+    <style>
+        /*样式重置*/
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #block {
+            background-color: red;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="block"></div>
+    <script type="text/javascript">
+        var block = document.getElementById("block");
+        block.onmousedown = function(e) {
+            e = e || window.event;
+            var disX = e.clientX - this.offsetLeft;
+            var disY = e.clientY - this.offsetTop;
+            document.onmousemove = function(e) {
+                e = e || window.event;
+                block.style.left = e.clientX - disX + "px";
+                block.style.top = e.clientY - disY + "px";
+            };
+            document.onmouseup = function() {
+                document.onmousemove = null;
+            };
+        };
+    </script>
+</body>
+</html>
