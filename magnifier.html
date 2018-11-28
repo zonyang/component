@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>magnifier</title>
+    <style>
+        /*样式重置*/
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        /**/
+        #small-pic {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            float: left;
+            cursor: pointer;
+        }
+        #drag {
+            display: none;
+            position: absolute;
+            background-color: #ccc;
+            width: 200px;
+            height: 200px;
+            opacity: .5;
+            filter: alpha(opacity=50);
+        }
+        #mask {
+            width: 100%;
+            height: 100%;
+            background-color: #ccc;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        #big-pic {
+            left: 0;
+            top: 0;
+            position: relative;
+            width: 400px;
+            height: 400px;
+            overflow: hidden;
+            display: none;
+        }
+        #big-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="small-pic">
+    <div id="mask"></div>
+    <img src="images/1.jpg" alt="small-pic">
+    <div id="drag"></div>
+</div>
+<div id="big-pic">
+    <img src="images/big.jpg" alt="big-pic" id="big-img">
+</div>
+<script type="text/javascript">
+    var drag = document.getElementById("drag"),
+        smallPic = document.getElementById("small-pic"),
+        bigPic = document.getElementById("big-pic"),
+        mask = document.getElementById("mask"),
+        bigImg = document.getElementById("big-img");
+    mask.onmouseover = function() {
+        drag.style.display = "block";
+        bigPic.style.display = "block";
+        mask.onmousemove = function(e) {
+            e = e || window.event;
+            var top = e.clientY - drag.offsetHeight/2;
+            var left = e.clientX - drag.offsetWidth/2;
+            var maxTop = smallPic.offsetHeight - drag.offsetHeight;
+            var maxLeft = smallPic.offsetWidth - drag.offsetWidth;
+            if(top < 0) {
+                top = 0;
+            }
+            if(top > maxTop) {
+                top = maxTop;
+            }
+            if(left < 0) {
+                left = 0;
+            }
+            if(left > maxLeft) {
+                left = maxLeft;
+            }
+            var scaleX = left/maxLeft;
+            var scaleY = top/maxTop;
+            drag.style.left = left + "px";
+            drag.style.top = top + "px";
+            bigImg.style.top = - scaleY * (bigImg.offsetHeight - bigPic.offsetHeight) + "px";
+            bigImg.style.left = - scaleX * (bigImg.offsetWidth - bigPic.offsetWidth) + "px";
+        };
+    };
+    mask.onmouseout = function() {
+        drag.style.display = "none";
+        bigPic.style.display = "none";
+    };
+</script>
+</body>
+</html>

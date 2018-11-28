@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>scroll bar</title>
+    <style>
+        /*样式重置*/
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #container {
+            position: relative;
+            top: 100px;
+            left: 100px;
+            width: 320px;
+            height: 300px;
+            overflow: hidden;
+            background-color: grey;
+        }
+        #content {
+            width: 90%;
+            position: absolute;
+        }
+        #scroll-bar {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 10%;
+            height: 100%;
+            background-color: #eee;
+        }
+        #scroll-btn {
+            position: absolute;
+            width: 100%;
+            height: 10%;
+            background-color: #bbb;
+            cursor: pointer;
+        }
+        /**/
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="content">
+        abc12312312312312312312312312312312312312312312312
+        31231231231231231231231231231231231231231231231
+        23123123123123123123123123123123123123123123123
+        123123123123123
+        12312312312312312312312312312312312312312312312
+        31231231231231231231231231231231231231231231231
+        23123123123123123123123123123123123123123123123
+        123123123123123
+        12312312312312312312312312312312312312312312312
+        31231231231231231231231231
+        23123123123123123123
+        12312312312312312312312312
+        31231231231231231231
+        23123123123123123
+        1231231231231231231231231231231231231231223123
+        1231231231231231231231231231231231
+        231231231231
+        2312312312312312312312312312312312
+        312312312312
+        312312312312312312312312
+        3123123123123123abc
+    </div>
+    <div id="scroll-bar">
+        <div id="scroll-btn"></div>
+    </div>
+</div>
+<script type="text/javascript">
+    var bar = document.getElementById("scroll-bar"),
+        slider = document.getElementById("scroll-btn"),
+        content = document.getElementById("content");
+    slider.onmousedown = function(e) {
+        e = e || window.event;
+        var disY = e.clientY - slider.offsetTop;
+        document.onmousemove = function(e) {
+            e = e || window.event;
+            var top = e.clientY - disY;
+            var maxDis = bar.offsetHeight - slider.offsetHeight;
+            if(top < 0) {
+                top = 0;
+            }
+            if(top > maxDis) {
+                top = maxDis;
+            }
+            var scale = top/maxDis;
+            slider.style.top = top + "px";
+            content.style.top = - scale * (content.offsetHeight - container.offsetHeight) + "px";
+            return false;
+        };
+        document.onmouseup = function() {
+            document.onmousemove = null;
+        };
+    };
+</script>
+</body>
+</html>
