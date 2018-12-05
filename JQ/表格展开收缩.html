@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td,th {
+            width: 100px;
+            height: 50px;
+            border: 1px black solid;
+            /*border-collapse: collapse;*/
+        }
+        .head {
+            text-align: center;
+            background-color: antiquewhite;
+        }
+        tr.select {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>age</th>
+                <th>sex</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="head" id="row_1">
+                <td colspan="3">First</td>
+            </tr>
+            <tr class="child_row_1"><td>hali</td><td>43</td><td>male</td></tr>
+            <tr class="child_row_1"><td>bob</td><td>12</td><td>female</td></tr>
+            <tr  class="head" id="row_2">
+                <td colspan="3">Second</td>
+            </tr>
+            <tr class="child_row_2"><td>lily</td><td>17</td><td>male</td></tr>
+            <tr class="child_row_2"><td>hali</td><td>43</td><td>male</td></tr>
+            <tr class="child_row_2"><td>bob</td><td>12</td><td>female</td></tr>
+            <tr class="head" id="row_3">
+                <td colspan="3">First</td>
+            </tr>
+            <tr class="child_row_3"><td>luna</td><td>43</td><td>male</td></tr>
+            <tr  class="child_row_3"><td>hali</td><td>43</td><td>male</td></tr>
+        </tbody>
+    </table>
+    <script src="jquery.js"></script>
+    <script>
+        $(function () {
+            $(".head").on('click', function () {
+                $(this).toggleClass("select").siblings(".child_" + $(this).prop("id")).toggle();
+            });
+        })
+    </script>
+</body>
+</html>

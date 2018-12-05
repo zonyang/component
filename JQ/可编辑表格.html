@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td,th {
+            width: 150px;
+            height: 50px;
+            border: 1px black solid;
+            /*border-collapse: collapse;*/
+        }
+        th {
+            text-align: center;
+        }
+        /*tr.select {*/
+            /*background-color: pink;*/
+        /*}*/
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">鼠标点击表格可以编辑</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>name</td><td>sex</td></tr>
+            <tr class="child_row_1"><td>hali</td><td>male</td></tr>
+            <tr class="child_row_1"><td>bob</td><td>female</td></tr>
+            <tr class="child_row_2"><td>lily</td><td>male</td></tr>
+            <tr class="child_row_2"><td>hali</td><td>male</td></tr>
+        </tbody>
+    </table>
+    <script src="jquery.js"></script>
+    <script>
+        $(function () {
+            $("tbody td").on("click", function () {
+                const $input = $("<input type='text'>");
+                $input.val($(this).text());
+                $(this).empty().append($input);
+                $input.focus();
+                $otd = $(this);
+                $input.on("keyup", function (event) {
+                    if(event.keyCode === 13) {
+                        $otd.text($(this).val())//.remove($(this));
+                    }
+                }).on("blur", function () {
+                    $otd.text($(this).val())//.remove($(this));
+                });
+            });
+        })
+    </script>
+</body>
+</html>

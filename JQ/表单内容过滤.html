@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td,th {
+            width: 100px;
+            height: 50px;
+            text-align: center;
+        }
+        #head th {
+            border-bottom: black 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <label for="search">筛选:</label>
+    <input id="search" type="text">
+    <table>
+        <thead>
+        <tr id="head">
+            <th>name</th>
+            <th>age</th>
+            <th>sex</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr><td>bob jordan</td><td>43</td><td>male</td></tr>
+            <tr><td>LiLei</td><td>17</td><td>male</td></tr>
+            <tr><td>LiGongfu</td><td>23</td><td>male</td></tr>
+            <tr><td>bob</td><td>12</td><td>female</td></tr>
+        </tbody>
+    </table>
+    <script src="jquery.js"></script>
+    <script>
+        $(function () {
+            $("#search").on("keyup", function () {
+                $("tbody tr").hide().filter(":contains("+$(this).val()+")").show();
+            })
+        })
+    </script>
+</body>
+</html>
