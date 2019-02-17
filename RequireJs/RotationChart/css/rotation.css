@@ -1,0 +1,86 @@
+.rotation-container {
+    position: relative;
+    width: 400px;
+    height: 300px;
+}
+
+.rotation-images img {
+    display: none;
+}
+
+.rotation-images img.active {
+    display: block;
+    width: 400px;
+    height: 300px;
+}
+
+.rotation-tabs {
+    position: absolute;
+    bottom: 10px;
+    right: 5px;
+    margin-right: 5px;
+}
+
+.rotation-tabs li {
+    float: left;
+    background-color: black;
+    margin-left: 5px;
+    width: 20px;
+    height: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.rotation-tabs li.active {
+    color: black;
+    background-color: white;
+}
+
+.rotation-tabs li.circle {
+    border-radius: 50%;
+}
+
+.rotation-tabs li.square {
+    text-align: center;
+    line-height: 20px;
+}
+
+.arrows {
+    position: absolute;
+}
+
+.arrows.center {
+    position: absolute;
+    top: 50%;
+    margin-top: -10px;
+    width: 100%;
+}
+
+.center .arrow-left {
+    float: left;
+}
+
+.center .arrow-right {
+    float: right;
+}
+
+.arrows.left {
+    bottom: 10px;
+    margin-left: 5px;
+}
+
+.left .arrow-left, .left .arrow-right {
+    float: left;
+    margin-left: 5px;
+}
+
+.arrows div {
+    background-color: black;
+    color: white;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+    user-select: none;
+}
