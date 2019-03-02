@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #clock {
+            width: 200px;
+            height: 200px;
+            margin: 100px auto;
+            border-radius: 50%;
+            border: 1px solid black;
+            position: relative;
+        }
+
+        #clock .scale {
+            transform-origin: center 100px;
+            position: absolute;
+            width: 2px;
+            height: 4px;
+            background-color: black;
+            top: 0;
+            left: 99px;
+        }
+
+        #clock #hour, #clock #minute, #clock #sec {
+            position: absolute;
+            transform-origin: center bottom;
+            width: 2px;
+        }
+
+        #clock #hour {
+            height: 30px;
+            left: 99px;
+            top: 70px;
+            background-color: #9999aa;
+        }
+
+        #clock #minute {
+            height: 40px;
+            left: 99px;
+            top: 60px;
+            background-color: #ddccbb;
+        }
+
+        #clock #sec {
+            height: 50px;
+            left: 99px;
+            top: 50px;
+            background-color: #1ab172;
+        }
+    </style>
+</head>
+<body>
+<div id="clock">
+    <div id="hour"></div>
+    <div id="minute"></div>
+    <div id="sec"></div>
+</div>
+<script>
+    const clock = document.getElementById("clock");
+    const oHour = document.getElementById("hour");
+    const oMinute = document.getElementById("minute");
+    const oSec = document.getElementById("sec");
+    for (let i = 0; i < 60; i++) {
+        let scale = document.createElement("div");
+        scale.className = "scale";
+        scale.style.transform = "rotate(" + 6 * i + "deg)";
+        if (i % 5 === 0) {
+            scale.style.height = "10px";
+        }
+        clock.appendChild(scale);
+    }
+
+    function time() {
+        let date = new Date();
+        let hour = date.getHours();
+        let min = date.getMinutes();
+        let sec = date.getSeconds();
+        oSec.style.transform = "rotate(" + 6 * sec + "deg)";
+        oMinute.style.transform = "rotate(" + 6 * min + sec / min + "deg)";
+        oHour.style.transform = "rotate(" + 30 * hour + min / hour + "deg)";
+    }
+
+    time();
+    setInterval(time, 1000);
+</script>
+</body>
+</html>

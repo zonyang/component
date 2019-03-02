@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #container {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .menu {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            transition: all .2s ease;
+        }
+
+        #home {
+            position: absolute;
+            transition: transform .2s linear;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <img class="menu" src="img/5.jpg" alt="">
+    <img class="menu" src="img/6.jpg" alt="">
+    <img class="menu" src="img/7.jpg" alt="">
+    <img class="menu" src="img/8.jpg" alt="">
+    <img class="menu" src="img/9.jpg" alt="">
+    <!--<div id="home">-->
+    <img id="home" src="img/14.jpg" alt="">
+    <!--</div>-->
+</div>
+<script>
+    const home = document.getElementById("home");
+    const menus = document.getElementsByClassName("menu");
+    let flag = true;
+    home.onclick = function () {
+        if (flag) {
+            this.style.transform = "rotate(-360deg)";
+            for (let i = 0, length = menus.length; i < length; i++) {
+                let height = Math.cos(Math.PI / 180 * (90 / (menus.length - 1) * i)) * 150;
+                let width = Math.sin(Math.PI / 180 * (90 / (menus.length - 1) * i)) * 150;
+                menus[i].style.transform = " translate(-" + height + "px, -" + width + "px) rotate(-360deg)";
+                menus[i].style.transitionDelay = (menus.length - i) * 100 + "ms";
+                menus[i].onclick = function () {
+                    var originTransform = this.style.transform;
+                    this.style.transform = originTransform + "scale(1.3)";
+                    this.style.opacity = 0.3;
+
+                    function fn() {
+                        this.style.transform = originTransform;
+                        this.style.opacity = 1;
+                        this.removeEventListener("transitionend", fn);
+                    }
+                    this.addEventListener("transitionend", fn, false);
+                }
+            }
+        }
+        else {
+            this.style.transform = "rotate(0)";
+            for (let i = 0, length = menus.length; i < length; i++) {
+                menus[i].style.transform = "translate(0px) rotate(0)";
+            }
+        }
+        flag = !flag;
+    };
+
+
+</script>
+</body>
+</html>

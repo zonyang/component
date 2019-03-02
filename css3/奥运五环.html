@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>multilevel navigation</title>
+	<style>
+		/*样式重置*/
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		.circle, .circle::after {
+			width: 200px;
+			height: 200px;
+			border-radius: 100%;
+			position: absolute;
+		}
+		.circle::after {
+			content: "";
+			top:  -10px;
+			left: -10px;			
+		}
+		.pink {
+			border: 10px solid pink;
+		}
+		.pink::after {
+			border: 10px solid pink;
+			z-index: 1;
+			border-bottom-color: transparent;
+		}
+		.orange {
+			top: 0;
+			left: 230px;
+			border: 10px solid orange;
+		}
+		.orange::after {
+			border: 10px solid orange;
+			z-index: 1;
+			border-left-color: transparent; 
+		}
+		.red {
+			top: 0;
+			left: 460px;
+			border: 10px solid red;
+		}
+		.red::after {
+			border: 10px solid red;
+			z-index: 1;
+			border-left-color: transparent; 
+		}
+		.green {
+			top: 150px;
+			left: 115px;
+			border: 10px solid green;
+		}
+		.green::after {
+			border: 10px solid green;
+		}
+		.blue {
+			top: 150px;
+			left: 345px;
+			border: 10px solid blue;
+		}
+		.blue::after {
+			border: 10px solid blue;
+				z-index: 1;
+			border-top-color: transparent; 
+			border-right-color: transparent; 
+		}
+		
+		/**/
+	</style>
+</head>
+<body>
+	<div class="circle pink"></div>
+	<div class="circle orange"></div>
+	<div class="circle red"></div>
+	<div class="circle green"></div>
+	<div class="circle blue"></div>
+</body>
+</html>

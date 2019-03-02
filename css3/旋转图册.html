@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #container {
+            margin: 100px auto;
+            width: 1000px;
+            height: 700px;
+            background-color: #9999aa;
+            position: relative;
+            perspective: 800px;
+            perspective-origin: center -10%;
+        }
+
+        #stage {
+            width: 128px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            margin-left: -64px;
+            /*perspective: 800px;*/
+            transform-style: preserve-3d;
+            /*transform-origin: center top;*/
+        }
+
+        #container img {
+            /*margin: ;*/
+            width: 128px;
+            height: 100px;
+            position: absolute;
+            transition: transform 1s ease;
+            /*transform-origin: center top;*/
+            /*transfrom-origin: center bottom;*/
+        }
+
+        /*img:nth-child(2) {*/
+        /*transform: rotateY(40deg);*/
+        /*}*/
+        /*img:nth-child(3) {*/
+        /*transform: rotateY(80deg);*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="stage">
+        <!--<img src="img/1.jpg" alt="">-->
+        <!--<img src="img/2.jpg" alt="">-->
+        <!--<img src="img/3.jpg" alt="">-->
+    </div>
+</div>
+<script>
+    const container = document.getElementById("stage");
+    const imgs = container.getElementsByTagName("img");
+    let loadImg = 0;
+    let imgLength = 9;
+    for (let i = 0; i < imgLength; i++) {
+        let img = new Image();
+        img.src = "img/" + (i + 1) + ".jpg";
+        img.index = i;
+        container.appendChild(img);
+        img.onload = function () {
+            loadImg++;
+            if (loadImg === imgLength) {
+                let y = imgs[0].offsetWidth / 2 / Math.tan(360 / imgs.length / 2 * (2 * Math.PI / 360));
+                for (let index = 0; index < imgLength; index++) {
+                    (function (num) {
+                        setTimeout(function () {
+                            imgs[num].style.transform = "rotateY(" + (-40 * num) + "deg) translateZ(" + y + "px) ";
+                        }, 100 * (imgLength - num))
+                    })(index);
+                }
+            }
+        };
+    }
+    container.onclick = function (e) {
+        container.style.transform = "rotateY("+(e.target.index)*40+"deg)";
+    }
+</script>
+</body>
+</html>

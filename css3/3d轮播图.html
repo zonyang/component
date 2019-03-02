@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #container {
+            width: 400px;
+            height: 300px;
+            margin: 100px auto;
+            position: relative;
+        }
+
+        #imgs {
+            perspective: 800px;
+
+        }
+
+        #container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 300px;
+            transform-origin: center bottom;
+            display: none;
+        }
+
+        #container .select {
+            display: block;
+            -webkit-animation: show 2s ease forwards;
+            -o-animation: show 2s ease forwards;
+            animation: show 2s ease forwards;
+        }
+
+        #container .hidden {
+            display: block;
+            -webkit-animation: hide 2s ease forwards;
+            -o-animation: hide 2s ease forwards;
+            animation: hide 2s ease forwards;
+        }
+
+        @keyframes show {
+            from {
+                opacity: 0;
+                transform: rotateX(180deg);
+            }
+            to {
+                opacity: 1;
+                transform: rotateX(0);
+            }
+        }
+
+        @keyframes hide {
+            from {
+                opacity: 1;
+                transform: rotateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: rotateX(-180deg);
+            }
+        }
+
+        #left, #right {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+            background-color: #9999aa;
+            border-radius: 40%;
+            top: 135px;
+        }
+
+        #left {
+            left: -40px;
+        }
+
+        #right {
+            right: -40px
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="imgs">
+        <img class="select" src="img/1.jpg" alt="">
+        <img src="img/2.jpg" alt="">
+        <img src="img/4.jpg" alt="">
+    </div>
+    <span id="left">&lt;</span>
+    <span id="right">&gt;</span>
+    <script>
+        const imgs = document.getElementsByTagName("img");
+        const left = document.getElementById("left");
+        const right = document.getElementById("right");
+        let index = 0;
+        left.onclick = right.onclick = function () {
+            if (this === left) {
+                imgs[index].className = "hidden";
+                index--;
+                if (index === -1) {
+                    index = imgs.length-1;
+                }
+                imgs[index].className = "select";
+            } else {
+                imgs[index].className = "hidden";
+                index++;
+                if (index === imgs.length) {
+                    index = 0;
+                }
+                imgs[index].className = "select";
+            }
+        }
+    </script>
+</div>
+</body>
+</html>

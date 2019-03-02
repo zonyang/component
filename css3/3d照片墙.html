@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #container {
+            position: relative;
+            background-color: #9999aa;
+            width: 100%;
+            height: 100%;
+        }
+
+        #container .img {
+            position: absolute;
+            top: -150px;
+            left: -150px;
+            height: 125px;
+            width: 125px;
+            border: 5px solid #fff;
+            transition: all 1s ease;
+        }
+
+        #container .img span {
+            transition: opacity 1s ease;
+            position: absolute;
+            width: 125px;
+            height: 125px;
+            opacity: 0;
+        }
+
+        #left, #right {
+            position: absolute;
+            top: 50%;
+            margin-top: -25px;
+            height: 50px;
+            width: 50px;
+            background-color: rgba(195, 169, 186, 0.7);
+            font-size: 30px;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 50%;
+            display: none;
+        }
+
+        #left {
+            left: 20px;
+        }
+
+        #right {
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <span id="left">&lt;</span>
+    <span id="right">&gt;</span>
+</div>
+<script>
+    const container = document.getElementById("container");
+    const leftBtn = document.getElementById("left");
+    const rightBtn = document.getElementById("right");
+    let imgLength = 24;
+    for (let i = 0; i < 4; i++) {
+        for (let j = 0; j < 6; j++) {
+            // let img = new Image();
+            // img.src="img/"+(i+1)+".jpg";
+            imgLength--;
+            let oDiv = document.createElement("div");
+            oDiv.style.background = "url(imageSmall/" + (imgLength + 1) + ".jpg)";
+            oDiv.className = "img";
+            oDiv.innerHTML = "<span></span>";
+            container.appendChild(oDiv);
+            let colWidth = (container.offsetWidth - (oDiv.offsetWidth * 6)) / 7;
+            let rowWidth = (container.offsetHeight - (oDiv.offsetHeight * 4)) / 5;
+            oDiv.pos = {
+                left: colWidth * (j + 1) + oDiv.offsetWidth * j,
+                top: rowWidth * (i + 1) + oDiv.offsetHeight * i,
+                col: i,
+                row: j,
+                index: imgLength
+            };
+            oDiv.onclick = changeBig;
+            setTimeout(function () {
+                changeSmall(oDiv);
+            }, imgLength * 100);
+        }
+    }
+    const oDiv = container.getElementsByTagName("div");
+    let flag = true;
+    let padWidth = (container.offsetWidth - 750) / 2;
+    let width = oDiv[0].offsetWidth - 8;
+    let padHeight = (container.offsetHeight - 500) / 2;
+    let height = oDiv[0].offsetHeight - 8;
+
+    function showImg(currentIndex) {
+        for (let index = 0; index < 24; index++) {
+            oDiv[index].style.transform = "rotate(0deg)";
+            oDiv[index].style.border = "1px solid #fff";
+            oDiv[index].style.left = padWidth + oDiv[index].pos.row * width + "px";
+            oDiv[index].style.top = padHeight + oDiv[index].pos.col * height + "px";
+            let span = oDiv[index].getElementsByTagName("span")[0];
+            span.style.opacity = 1;
+            let spanLeft = width * oDiv[index].pos.row;
+            let spanTop = oDiv[index].pos.col * height;
+            span.style.background = "url(imageBig/" + (currentIndex + 1) + ".jpg) " + (-spanLeft) + "px " + (-spanTop) + "px no-repeat"
+        }
+    }
+
+    function changeBig() {
+        if (flag) {
+            let currentIndex = this.pos.index;
+            showImg(currentIndex);
+            leftBtn.style.display = rightBtn.style.display = "block";
+            leftBtn.onclick = rightBtn.onclick = function () {
+                if (this === leftBtn) {
+                    currentIndex++;
+                    if (currentIndex === oDiv.length) {
+                        currentIndex = 0;
+                    }
+                } else if (this === rightBtn) {
+                    currentIndex--;
+                    if (currentIndex === -1) {
+                        currentIndex = oDiv.length - 1;
+                    }
+                }
+                showImg(currentIndex);
+            };
+        } else {
+            for (let index = 0; index < 24; index++) {
+                changeSmall(oDiv[index]);
+            }
+        }
+        flag = !flag;
+    }
+
+    function changeSmall(ele) {
+        let span = ele.getElementsByTagName("span")[0];
+        span.style.opacity = "0";
+        ele.style.border = "5px solid #fff";
+        ele.style.transform = "rotate(" + parseInt(Math.random() * 40 - 20) + "deg)";
+        ele.style.left = ele.pos.left + "px";
+        ele.style.top = ele.pos.top + "px";
+    }
+</script>
+</body>
+</html>
