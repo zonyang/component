@@ -153,6 +153,7 @@
 
     function changeSmall(ele) {
         let span = ele.getElementsByTagName("span")[0];
+        leftBtn.style.display = rightBtn.style.display = "none";
         span.style.opacity = "0";
         ele.style.border = "5px solid #fff";
         ele.style.transform = "rotate(" + parseInt(Math.random() * 40 - 20) + "deg)";
